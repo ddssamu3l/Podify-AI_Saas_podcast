@@ -27,6 +27,7 @@ const config = {
           5: "rgba(255, 255, 255, 0.80)",
         },
         black: {
+          0: "#000000",
           1: "#15171C",
           2: "#222429",
           3: "#101114",
@@ -78,7 +79,7 @@ const config = {
       },
       backgroundImage: {
         "nav-focus":
-          "linear-gradient(270deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.00) 100%)",
+          "linear-gradient(270deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.00) 100%)",
       },
       keyframes: {
         "accordion-down": {
