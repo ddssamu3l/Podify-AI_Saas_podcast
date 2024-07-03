@@ -25,7 +25,7 @@ const LeftSidebar = () => {
                 const isActive = pathname === route;
                 // cn stans for "classname". Its a tailwind function that allows you to pass multiple classnames
                 return <Link href={route} key={label} className={cn("flex gap-3 items-center py-4 max-lg:px-4 text-white-1 justify-center lg:justify-start", {
-                  'bg-nav-focus border-r-4 border-orange': isActive
+                  'bg-nav-focus border-r-4 border-yellow': isActive
                 })}>
                   <Image src = {imgURL} alt={label} width={24} height={24}/>
                   <p>{label}</p>
