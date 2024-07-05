@@ -11,10 +11,10 @@ export default function RootLayout({
     <main className = "relative h-screen w-full">
       <div className = "absolute size-full">
         <Image 
-          src = "/images/bg-img.png"
+          src = "/images/bg-img.jpg"
           alt = "background"
           fill
-          className = "size-full"
+          className = "w-full h-auto"
         />
       </div>
         {children}

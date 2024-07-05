@@ -1,5 +1,5 @@
 "use client"
-import { SignIn, SignUp } from '@clerk/nextjs'
+import { SignUp } from '@clerk/nextjs'
 
 const Page = () => {
   return (

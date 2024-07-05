@@ -1,5 +1,5 @@
 "use client"
-import { ClerkProvider, useAuth } from "@clerk/clerk-react";
+import { ClerkProvider, useAuth } from "@clerk/nextjs";
 import { ConvexProviderWithClerk } from "convex/react-clerk";
 import { ConvexReactClient } from "convex/react";
 import { ReactNode } from "react";
@@ -10,13 +10,13 @@ const ConvexClerkProvider = ({children}: {children: ReactNode}) => (
   <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY as string} appearance={{
     layout: {
       socialButtonsVariant: 'iconButton',
-      logoImageUrl: '/icons/auth-logo.svg',
+      logoImageUrl: '/logo.svg',
     },
     variables:{
-      colorBackground:"#15171c",
+      colorBackground:"#000000",
       colorPrimary: '',
       colorText: "white",
-      colorInputBackground:'#1b1f29',
+      colorInputBackground:'#1e1e1e',
       colorInputText:'white'
     },
   
