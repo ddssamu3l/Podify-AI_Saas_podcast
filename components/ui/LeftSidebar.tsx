@@ -24,7 +24,7 @@ const LeftSidebar = () => {
               // if isActive is active, then we apply a shaadow gradient border on the current sidebar link to show which page we are currently at
                 const isActive = pathname === route;
                 // cn stans for "classname". Its a tailwind function that allows you to pass multiple classnames
-                return <Link href={route} key={label} className={cn("flex gap-3 items-center py-4 max-lg:px-4 text-white-1 justify-center lg:justify-start", {
+                return <Link href={route} key={label} className={cn("flex gap-3 items-center py-4 max-lg:px-4 font-manrope text-white-1 justify-center lg:justify-start", {
                   'bg-nav-focus border-r-4 border-yellow': isActive
                 })}>
                   <Image src = {imgURL} alt={label} width={size} height={size}/>

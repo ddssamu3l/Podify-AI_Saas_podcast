@@ -44,7 +44,7 @@ const config = {
           DEFAULT: "rgb(255, 159, 10)",
         },
         yellow: {
-          DEFAULT: "rgb(255, 214, 10)",
+          DEFAULT: "#FF9F0A",
         },
         green: {
           DEFAULT: "rgb(48, 209, 88)",
@@ -74,8 +74,12 @@ const config = {
           DEFAULT: "rgb(172, 142, 104)",
         },
         grey:{
-          dark: '#222429'
+          DEFAULT: '#0f0f14',
         },
+      },
+      fontFamily: {
+        satoshi: ['Satoshi', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
       backgroundImage: {
         "nav-focus":
