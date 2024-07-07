@@ -1,6 +1,6 @@
-import LeftSidebar from "@/components/ui/LeftSidebar";
-import MobileNav from "@/components/ui/Mobilenav";
-import RightSidebar from "@/components/ui/RightSidebar";
+import LeftSidebar from "@/components/LeftSidebar";
+import MobileNav from "@/components/MobileNav";
+import RightSidebar from "@/components/RightSidebar";
 import type { Metadata } from "next";
 import Image from "next/image";
 

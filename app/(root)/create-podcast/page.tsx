@@ -28,8 +28,8 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { Textarea } from "@/components/ui/textarea"
-import GeneratePodcast from "@/components/ui/GeneratePodcast"
-import GenerateThumbnail from "@/components/ui/GenerateThumbnail"
+import GeneratePodcast from "@/components/GeneratePodcast"
+import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
 import { Id } from "@/convex/_generated/dataModel"
 
@@ -87,7 +87,7 @@ const CreatePodcast = () => {
                 <FormItem className = "flex flex-col gap-2.5">
                   <FormLabel className = "md:text-lg text-md font-bold text-white-1">Podcast Title</FormLabel>
                   <FormControl>
-                    <Input className = "input-class focus-visible:ring-yellow" placeholder="What would you like to name your podcast?" {...field} />
+                    <Input className = "input-class focus-visible:ring-offset-yellow" placeholder="What would you like to name your podcast?" {...field} />
                   </FormControl>
                   <FormMessage className = "text-white-1"/>
                 </FormItem>
@@ -111,10 +111,10 @@ const CreatePodcast = () => {
                 />
               </div>
               <Select onValueChange={(value) => setVoiceType(value)}>
-                <SelectTrigger className={cn('capitalize md:text-lg text-md w-full border-none bg-black-0 text-white-3')}>
+                <SelectTrigger className={cn('capitalize md:text-lg text-md w-full border-none bg-black-0 text-white-3 focus:ring-offset-yellow')}>
                   <SelectValue className=" placeholder:text-white-3" placeholder="Select Voice" />
                 </SelectTrigger>
-                <SelectContent className = "md:text-lg text-md border-none bg-black-0 text-white-1 focus:ring-yellow">
+                <SelectContent className = "md:text-lg text-md border-none bg-black-0 text-white-1 focus:ring-offset-yellow">
                   {VoiceCategories.map((category) => (
                     <SelectItem key = {category} value = {category} className = "capitalize focus:bg-yellow">
                       {category}
@@ -131,7 +131,7 @@ const CreatePodcast = () => {
               </Select>
             </div>
 
-            {/*============================= SELECT AI VOICE ================================*/}
+            {/*============================= Podcast Description ================================*/}
             <FormField
               control={form.control}
               name="podcastDescription"
@@ -139,7 +139,7 @@ const CreatePodcast = () => {
                 <FormItem className = "flex flex-col gap-2.5">
                   <FormLabel className = "md:text-lg text-md font-bold text-white-1">Description</FormLabel>
                   <FormControl>
-                    <Textarea className = "input-class focus-visible:ring-yellow" placeholder="Write a short description for your AI podcast" {...field} />
+                    <Textarea className = "input-class focus-visible:ring-offset-yellow" placeholder="Write a short description for your AI podcast" {...field} />
                   </FormControl>
                   <FormMessage className = "text-white-1"/>
                 </FormItem>
@@ -148,14 +148,22 @@ const CreatePodcast = () => {
           </div>
 
           <div className = "flex flex-col pt-10">
-              <GeneratePodcast />
+              <GeneratePodcast 
+                setAudioStorageId={setAudioStorageId}
+                setAudio={setAudioURL}
+                voiceType={voiceType}
+                audio={audioURL}
+                voicePrompt={voicePrompt}
+                setVoicePrompt={setVoicePrompt}
+                setAudioDuration={setAudioDuration}
+              />
 
               <GenerateThumbnail />
               
               <div className = "mt-10 w-full">
                 <Button 
                 type = "submit"
-                className = "md:text-lg text-md w-full bg-yellow py-4 font-bold text-white-1 transition-all duration-500 hover:bg-black-0 hover:border hover:border-yellow"
+                className = "md:text-lg text-md w-full bg-yellow py-4 font-bold text-white-1 transition-all duration-500 hover:bg-black-0 hover:border hover:border-yellow transition-all"
                 >
                   {isSubmitting ? (
                     <>
