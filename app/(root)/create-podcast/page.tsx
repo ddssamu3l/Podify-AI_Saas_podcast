@@ -32,6 +32,7 @@ import GeneratePodcast from "@/components/GeneratePodcast"
 import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
 import { Id } from "@/convex/_generated/dataModel"
+import { VoiceType } from "@/types/index"
 
 const VoiceCategories = ['alloy', "shimmer", "nova", "echo", "fable", "onyx"];
 
@@ -51,7 +52,7 @@ const CreatePodcast = () => {
   const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(null);
   const [audioDuration, setAudioDuration] = useState(0);
 
-  const [voiceType, setVoiceType] = useState<string |null>(null);
+  const [voiceType, setVoiceType] = useState<string | null>(null);
   const [voicePrompt, setVoicePrompt] = useState('');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,9 +74,9 @@ const CreatePodcast = () => {
     console.log(values)
   }
   return (
+    
     <section className = "mt-10 flex flex-col">
       <h1 className="text-24 font-bold text-white-1">Create A Podcast</h1>
-
        {/*=========================== PODCAST TITLE ==============================*/}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mt-12 flex w-full flex-col">
@@ -151,7 +152,7 @@ const CreatePodcast = () => {
               <GeneratePodcast 
                 setAudioStorageId={setAudioStorageId}
                 setAudio={setAudioURL}
-                voiceType={voiceType}
+                voiceType={voiceType! as VoiceType}
                 audio={audioURL}
                 voicePrompt={voicePrompt}
                 setVoicePrompt={setVoicePrompt}
@@ -180,6 +181,7 @@ const CreatePodcast = () => {
           </div>
         </form>
       </Form>
+      
     </section>
   )
 }
