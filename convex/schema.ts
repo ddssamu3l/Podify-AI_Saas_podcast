@@ -7,7 +7,7 @@ export default defineSchema({
     podcasts: defineTable({
         // v.union() describes fiends that could be of multiple types.
         // v.optional means it's either the type defined in the brackets or it's null   
-        users: v.id('users'),
+        user: v.id('users'),
         podcastTitle: v.string(),
         podcastDescription: v.string(),
         audioURL: v.optional(v.string()),

@@ -55,7 +55,7 @@ const useGeneratePodcast = ({
       setAudio(audioUrl!);
       setIsGenerating(false);
       toast({
-        title: "Podcast generated successfully",
+        title: "Podcast audio generated successfully",
       })
     } catch (error) {
       console.error('Error generating podcast', error)
@@ -91,7 +91,7 @@ const GeneratePodcast = (
           onChange={(e) => props.setVoicePrompt(e.target.value)}
         />
       </div>
-      {/*==============================  */}
+      {/*==============================  AI SCRIPT  =================================== */}
       <div className = "mt-5 w-full max-w-[200px]">
         <Button 
           type = "submit"

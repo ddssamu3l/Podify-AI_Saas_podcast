@@ -89,7 +89,7 @@ const GenerateThumbnail = ({setImage, setImageStorageId, image, imagePrompt, set
         <Button
           type = "button"
           variant = "plain"
-          onClick={() => setIsAiThumbnail(true)}
+          onClick={() => {setIsAiThumbnail(true); setImage('');}}
           className = {cn('', {'bg-[#212121]':isAiThumbnail})}
         >
           Use AI to generate a thumbnail
@@ -105,7 +105,7 @@ const GenerateThumbnail = ({setImage, setImageStorageId, image, imagePrompt, set
         <Button
           type = "button"
           variant = "plain"
-          onClick={() => setIsAiThumbnail(false)}
+          onClick={() => {setIsAiThumbnail(false); setImage('');}}
           className =  {cn('', {'bg-[#212121]':!isAiThumbnail})}
         >
           Upload custom image 

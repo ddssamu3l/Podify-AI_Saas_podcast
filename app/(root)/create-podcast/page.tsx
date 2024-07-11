@@ -1,5 +1,4 @@
 "use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -33,6 +32,10 @@ import GenerateThumbnail from "@/components/GenerateThumbnail"
 import { Loader } from "lucide-react"
 import { Id } from "@/convex/_generated/dataModel"
 import { VoiceType } from "@/types/index"
+import { useToast } from "@/components/ui/use-toast"
+import { useMutation } from "convex/react"
+import { api } from "@/convex/_generated/api"
+import { useRouter } from "next/navigation"
 
 const VoiceCategories = ['alloy', "shimmer", "nova", "echo", "fable", "onyx"];
 
@@ -44,6 +47,7 @@ const formSchema = z.object({
 })
 
 const CreatePodcast = () => {
+  const router = useRouter();
   const [imagePrompt, setImagePrompt] = useState('');
   const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(null);
   const [imageURL, setImageURL] = useState('');
@@ -56,6 +60,10 @@ const CreatePodcast = () => {
   const [voicePrompt, setVoicePrompt] = useState('');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const createPodcast = useMutation(api.podcasts.createPodcast)
+
+  const {toast} = useToast();
  
 
   // 1. Define your form.
@@ -68,10 +76,47 @@ const CreatePodcast = () => {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    // Do something with the form data.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    try {
+      setIsSubmitting(true);
+      if(!audioURL || !imageURL || !voiceType){
+        toast({
+          title: "Please audio and image",
+        })
+        setIsSubmitting(false);
+        throw new Error ("Please audio and image")
+      }
+
+      const podcast = await createPodcast({
+        podcastTitle: data.podcastTitle,
+        podcastDescription: data.podcastDescription,
+        audioURL: audioURL,
+        imageURL: imageURL,
+        voiceType: voiceType,
+        voicePrompt: voicePrompt,
+        imagePrompt: imagePrompt,
+        views: 0,
+        audioDuration: audioDuration,
+        audioStorageId: audioStorageId!,
+        imageStorageId: imageStorageId!,
+        
+      })
+
+      toast({title: "Podcast created successfully"})
+      setIsSubmitting(false);
+
+      // after the podcast is created, push the webpage back to the home page
+      router.push('/');
+    }catch (error) {
+      console.log("Error submitting podcast", error)
+      toast({
+        title: "Error submitting podcast",
+        variant: 'destructive',
+      })
+      setIsSubmitting(false);
+    }
   }
   return (
     
@@ -155,6 +200,7 @@ const CreatePodcast = () => {
           </div>
 
           <div className = "flex flex-col pt-10">
+              
               <GeneratePodcast 
                 setAudioStorageId={setAudioStorageId}
                 setAudio={setAudioURL}
@@ -176,7 +222,7 @@ const CreatePodcast = () => {
               <div className = "mt-10 w-full">
                 <Button 
                 type = "submit"
-                className = "md:text-lg text-md w-full bg-yellow py-4 font-bold text-white-1 transition-all duration-500 hover:bg-black-0 hover:border hover:border-yellow transition-all"
+                className = "md:text-lg text-md w-full bg-yellow py-4 font-bold text-white-1 duration-500 hover:bg-black-0 hover:border hover:border-yellow transition-all"
                 >
                   {isSubmitting ? (
                     <>
