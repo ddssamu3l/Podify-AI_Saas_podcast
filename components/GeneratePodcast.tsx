@@ -86,7 +86,7 @@ const GeneratePodcast = (
         <Textarea 
           className = "input-class font-light focus-visible:ring-offset-yellow"
           placeholder = "Enter your script here"
-          rows={5}
+          rows={4}
           value={props.voicePrompt}
           onChange={(e) => props.setVoicePrompt(e.target.value)}
         />
@@ -105,7 +105,7 @@ const GeneratePodcast = (
               </>
             ) : (
               <>
-                Generate Podcast
+                Generate Audio
               </>
             )}
         </Button>

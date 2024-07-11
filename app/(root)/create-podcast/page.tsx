@@ -101,6 +101,12 @@ const CreatePodcast = () => {
                 Select an AI voice to voice your podcast
               </Label>
               <div className="flex items-center gap-2.5">
+                <Image 
+                  src="/icons/speaker.png"
+                  alt="speaker"
+                  width={20}
+                  height={20}
+                />
                 <h1 className = "text-14 text-white-1">
                 (Turn up volume for sound sample)
                 </h1>
@@ -159,7 +165,13 @@ const CreatePodcast = () => {
                 setAudioDuration={setAudioDuration}
               />
 
-              <GenerateThumbnail />
+              <GenerateThumbnail 
+                setImage={setImageURL}
+                setImageStorageId={setImageStorageId}
+                image={imageURL}
+                imagePrompt={imagePrompt}
+                setImagePrompt={setImagePrompt}
+              />
               
               <div className = "mt-10 w-full">
                 <Button 
