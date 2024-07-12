@@ -1,17 +1,20 @@
 import React from 'react'
 import Image from 'next/image'
+import { Id } from '@/convex/_generated/dataModel'
+import { PodcastCardProps } from '@/types'
+import { useRouter } from 'next/navigation'
 
 const PodcastCard = ({
     podcastId, title, description, imgURL
-}:{
-    podcastId: number,
-    title: string,
-    description: string,
-    imgURL: string,
+}:PodcastCardProps) => {
+    const router = useRouter();
 
-}) => {
+    const handleViews = () => {
+        // increase views
+        router.push(`/podcast/${podcastId}`, {scroll: true});
+    }
   return (
-    <div className = "cursor-pointer">
+    <div className = "cursor-pointer" onClick = {handleViews}>
         <figure className = "flex flex-col gap-2">
             <Image 
                 src={imgURL}
