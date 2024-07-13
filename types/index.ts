@@ -17,10 +17,10 @@ export interface TopPodcastersProps {
   email: string;
   imageURL: string;
   clerkId: string;
-  name: string;
+  username: string;
   podcast: {
     podcastTitle: string;
-    pocastId: Id<"podcasts">;
+    podcastId: Id<"podcasts">;
   }[];
   totalPodcasts: number;
 }

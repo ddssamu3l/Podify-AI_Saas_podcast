@@ -42,6 +42,8 @@ export const getUserById = query({
           };
         })
       );
+
+      console.log(userData)
   
       return userData.sort((a, b) => b.totalPodcasts - a.totalPodcasts);
     },

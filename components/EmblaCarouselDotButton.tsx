@@ -5,6 +5,7 @@ import React, {
     useState
   } from 'react'
   import { EmblaCarouselType } from 'embla-carousel'
+import { cn } from '@/lib/utils'
   
   type UseDotButtonType = {
     selectedIndex: number
@@ -51,15 +52,15 @@ import React, {
     }
   }
   
-  type PropType = ComponentPropsWithRef<'button'>
-  
-  export const DotButton: React.FC<PropType> = (props) => {
-    const { children, ...restProps } = props
+  type DotButtonProps = {
+    selected: boolean,
+    onClick: () => void
+  }
+  export const DotButton = ({selected, onClick}: DotButtonProps) => {
   
     return (
-      <button type="button" {...restProps}>
-        {children}
-      </button>
+      <button type="button" onClick={onClick} className = {cn('size-2.5 bg-white-3 rounded-full cursor-pointer transition-all duration-500', {'bg-white-1': selected})} />
+
     )
   }
   

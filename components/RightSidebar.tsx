@@ -4,13 +4,13 @@ import Link from 'next/link';
 import Image from 'next/image'
 import React from 'react'
 import Header from './Header';
-import Carousel from './carousel';
+import Carousel from './Carousel';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 
 const RightSidebar = () => {
   const {user} = useUser();
-  const topPodcasters = useQuery(api.users.getTopUserByPodcastCount)
+  const topPodcasters = useQuery(api.users.getTopUserByPodcastCount);
   return (
     <section className = "right_sidebar text-white-1">
       <SignedIn>
@@ -29,8 +29,8 @@ const RightSidebar = () => {
       </SignedIn>
 
       <section>
-        <Header headerTitle = "Fans Like You"/>
-        {/* <Carousel fansLikeDetail={topPodcasters!}/> */}
+        <Header headerTitle = "Popular Podcasters"/>
+        <Carousel fansLikeDetail={topPodcasters!}/>
       </section>
     </section>
   )
