@@ -73,7 +73,7 @@ const PostcastDetails = ({ params:{podcastId}}: {params: {podcastId: Id<"podcast
 
 
       <section className = "mt-6 flex flex-col gap-5">
-      <h1 className = "text-20 font-bold text-white-1">Similar Podcasts</h1>
+      <h1 className = "text-20 font-bold text-white-1">Other Podcasts By {podcast.author}</h1>
         {similarPodcasts && similarPodcasts.length > 0 ? (
           <>
             

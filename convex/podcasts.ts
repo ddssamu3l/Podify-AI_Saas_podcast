@@ -159,11 +159,22 @@ export const getPodcastByAuthorId = query({
       if (titleSearch.length > 0) {
         return titleSearch;
       }
+
+      const descriptionSearch = await ctx.db
+        .query("podcasts")
+        .withSearchIndex("search_description", (q) =>
+          q.search("podcastDescription", args.search)
+        )
+        .take(10);
+  
+      if (descriptionSearch.length > 0) {
+        return descriptionSearch;
+      }
   
       return await ctx.db
         .query("podcasts")
-        .withSearchIndex("search_body", (q) =>
-          q.search("podcastDescription" || "podcastTitle", args.search)
+        .withSearchIndex("search_prompt", (q) =>
+          q.search("voicePrompt", args.search)
         )
         .take(10);
     },
@@ -218,9 +229,8 @@ export const getPodcastByAuthorId = query({
             .query("podcasts")
             .filter((q) =>
             q.and(
-                q.eq(q.field("voiceType"), podcast?.voiceType),
-                q.neq(q.field("_id"), args.podcastId),
-                q.neq(q.field("authorId"), podcast?.authorId)
+                q.eq(q.field("authorId"), podcast?.authorId),
+                q.neq(q.field("_id"), podcast?._id),
             )
             )
             .collect();
