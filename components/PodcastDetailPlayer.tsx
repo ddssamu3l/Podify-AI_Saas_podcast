@@ -11,6 +11,7 @@ import { PodcastDetailPlayerProps } from "@/types";
 import LoadSpinner from "./LoadSpinner";
 import { Button } from "./ui/button";
 import { useToast } from "./ui/use-toast";
+import { updatePodcastViews } from "@/convex/podcasts";
 
 const PodcastDetailPlayer = ({
   audioURL,
@@ -28,7 +29,9 @@ const PodcastDetailPlayer = ({
   const { setAudio } = useAudio();
   const { toast } = useToast();
   const [isDeleting, setIsDeleting] = useState(false);
+  const [hasListened, setHasListened] = useState(false);
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
+  const updatePodcast = useMutation(api.podcasts.updatePodcastViews)
 
   const handleDelete = async () => {
     try {
@@ -46,7 +49,19 @@ const PodcastDetailPlayer = ({
     }
   };
 
-  const handlePlay = () => {
+  const handlePlay = async() => {
+    try{
+      if(!hasListened){
+        await updatePodcast({podcastId});
+        setHasListened(true);
+      }
+    }catch(e){
+      console.error("Error updating podcast listen count", e);
+      toast({
+        title: "Error updating podcast listen count",
+        variant: "destructive",
+      });
+    }
     setAudio({
       title: podcastTitle,
       audioURL,
