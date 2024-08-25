@@ -1,7 +1,8 @@
 # Podify is an AI powered podcast platform
 You can generate your own podcast with ChatGPT's api by feeding a script into the app and the app will run a tex-to-speech algorithm to turn it into an audio clip!
 
-##  Live Deployment Link: https://podify-rfu3yqwfh-dd-dengs-projects.vercel.app/
+## Live Deployment Link: https://podify-rfu3yqwfh-dd-dengs-projects.vercel.app/
+## YouTube Demo Link: https://youtu.be/nqnLA2Bw16c
 <img width="1440" alt="podify" src="https://github.com/user-attachments/assets/a4d1a6a6-a471-4221-9953-8cbea84f27d4">
 
 ## Technical Details
