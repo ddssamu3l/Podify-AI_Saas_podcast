@@ -13,7 +13,7 @@ User authentication system is powered by Clerk, where a collaboration between Cl
 Podcast search feature is similar to what is found in Prompt-A-Chat (My other Full-Stack project) where the search input is used to filter out related podcasts that match the search input either through content or author.
 
 ## Tech Stack
-- Next.js | MongoDB | NextAuth | GoogleCloud | Tailwind CSS
+Next.js | Convex | Clerk | OpenAI API | Tailwind CSS | Shadcn/ui
 
 
 Tutorial Credit - JavsScript Mastery on YouTube: https://www.youtube.com/watch?v=zfAb95tJvZQ&list=WL&index=2&t=109s
